@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
-
-const App = () => (
-	<p>App here</p>
-)
+import App from './frontend/App'
 
 render(<App />, document.getElementById('application'));
