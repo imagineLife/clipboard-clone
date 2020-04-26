@@ -5,14 +5,16 @@ const App = () => {
   const [clippings, setClipping] = useState([{ content: 'demo', id: 234 }]);
 
   const addClipping = () => {
+  	// get new clipping from clipboard
     const content = clipboard.readText();
     const id = Date.now();
-
     const clipping = { id, content };
 
-    setClipping({
-      clippings: [clipping, ...clippings],
-    });
+    // prep new state
+    const newClippings = [clipping, ...clippings];
+
+    // update state
+    setClipping(newClippings);
   };
 
   return (
@@ -30,7 +32,8 @@ const App = () => {
       {/* Content */}
       <section className="content">
         <div className="clipping-list">
-          ...clippings will go here!
+          {clippings.map((clip, clipIdx) => (
+            <li key={`clipping-${clipIdx}`}>{clip.content}</li>))}
         </div>
       </section>
     </main>
