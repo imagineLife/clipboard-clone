@@ -18,7 +18,11 @@ const createWindow = () => {
     height: 600,
   });
 
+  // load the frontent html && extended js files
   mainWindow.loadURL(`file://${__dirname}/index.html`);
+
+  // Auto-Open dev-tools
+  mainWindow.webContents.openDevTools();
 };
 
 /*
