@@ -1,4 +1,10 @@
-import { app, BrowserWindow } from 'electron';
+import {
+  app,
+  BrowserWindow,
+
+  // allowing Keyboard shortcuts
+  globalShortcut,
+} from 'electron';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling
 if (require('electron-squirrel-startup')) {
@@ -37,6 +43,17 @@ const createWindow = () => {
     */
     mainWindow = null;
   });
+
+  // register Cmd + Shift + ! to save new txt to clipboard
+  const createClippingShortcut = globalShortcut.register('CommandOrControl+!', () => {
+    // emit a socket-style event
+    mainWindow.webContents.send('create-new-clipping');
+  });
+
+  // event-registration error handling
+  if (!createClippingShortcut) {
+    console.error('Event Registration Failed:', 'create-clipping');
+  }
 };
 
 /*
