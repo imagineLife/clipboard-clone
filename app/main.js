@@ -8,7 +8,11 @@ import { app, BrowserWindow } from 'electron';
 let mainWindow;
 
 const createWindow = () => {
-  console.log('-- CREATE WINDOW FN--');
+  // Create the browser window.
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
 };
 
 /*
