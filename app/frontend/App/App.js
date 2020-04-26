@@ -18,6 +18,10 @@ const App = () => {
     setClipping(newClippings);
   };
 
+  const writeToClipboard = (c) => {
+  	clipboard.writeText(c);
+  };
+
   return (
     <main className="container">
       {/* Header */}
@@ -37,9 +41,7 @@ const App = () => {
             <Clipping
               key={`clipping-${clipIdx}`}
               content={clip.content}
-              onClick={
-            		() => console.log('Clicked Clipping!!')
-            	}
+              onClick={writeToClipboard}
             />
           ))}
         </div>
