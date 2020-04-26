@@ -43,3 +43,13 @@ const createWindow = () => {
 	Some APIs can only be used after this event occurs
 */
 app.on('ready', createWindow);
+
+// Quit when all windows are closed
+app.on('window-all-closed', () => {
+  /*
+		prevent app window(s) from staying open in osx
+	*/
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
