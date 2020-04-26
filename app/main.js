@@ -23,6 +23,17 @@ const createWindow = () => {
 
   // Auto-Open dev-tools
   mainWindow.webContents.openDevTools();
+
+  // Emitted when the window is closed.
+  mainWindow.on('closed', () => {
+    /*
+			Dereference the window object
+			NOTE: the app CAN store windows in an array
+			to support multi windows
+			this is the time the corresponding element should be deleted (self-'garbage-collection')
+    */
+    mainWindow = null;
+  });
 };
 
 /*
