@@ -12,22 +12,29 @@ import Clipping from '../Clipping';
 
 const App = () => {
   const [clippings, setClipping] = useState([{ content: 'demo', id: 234 }]);
+  const [clippingEffect, setClippingEffect] = useState(false);
 
-  const addClipping = () => {
-  	// get new clipping from clipboard
-    const content = clipboard.readText();
-    const id = Date.now();
-    const clipping = { id, content };
+  // side-effect to update clipping
+  useEffect(() => {
+    if (clippingEffect) {
+      const content = clipboard.readText();
+      const id = Date.now();
+      const clipping = { id, content };
 
-    // prep new state
-    const newClippings = [clipping, ...clippings];
+      // prep new state
+      const newClippings = [clipping, ...clippings];
 
-    // update state
-    setClipping(newClippings);
-  };
+      // update state
+      setClipping(newClippings);
+      setClippingEffect(false);
+    }
+  }, [clippingEffect]);
+  // get new clipping FROM clipboard
 
   useEffect(() => {
-  	ipcRenderer.on('create-new-clipping', addClipping);
+  	ipcRenderer.on('create-new-clipping', () => {
+      setClippingEffect(true);
+    });
   }, []);
 
   const writeToClipboard = (c) => {
@@ -40,7 +47,7 @@ const App = () => {
       <header className="controls">
         <button
           id="copy-from-clipboard"
-          onClick={addClipping}
+          onClick={() => setClippingEffect(true)}
         >
           Copy From Clipboard
         </button>
