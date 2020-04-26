@@ -50,9 +50,20 @@ const createWindow = () => {
     mainWindow.webContents.send('create-new-clipping');
   });
 
+  // register Cmd + Shift + ! to save new txt to clipboard
+  const copyClipToBoard = globalShortcut.register('CommandOrControl+@', () => {
+    // emit a socket-style event
+    mainWindow.webContents.send('copy-to-board');
+  });
+
   // event-registration error handling
   if (!createClippingShortcut) {
-    console.error('Event Registration Failed:', 'create-clipping');
+    console.error('Event Registration Failed:', 'create-new-clipping');
+  }
+
+  // event-registration error handling
+  if (!copyClipToBoard) {
+    console.error('Event Registration Failed:', 'copy-to-board');
   }
 };
 
