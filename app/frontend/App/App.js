@@ -1,5 +1,13 @@
-import React, { useState } from 'react';
-import { clipboard } from 'electron';
+import React, {
+  useState,
+  useEffect,
+} from 'react';
+
+import {
+  clipboard,
+  ipcRenderer,
+} from 'electron';
+
 import Clipping from '../Clipping';
 
 const App = () => {
@@ -17,6 +25,10 @@ const App = () => {
     // update state
     setClipping(newClippings);
   };
+
+  // useEffect(() => {
+  // 	ipcRenderer.on('create-new-clipping', addClipping);
+  // }, []);
 
   const writeToClipboard = (c) => {
   	clipboard.writeText(c);
