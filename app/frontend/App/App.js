@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { clipboard } from 'electron';
+import Clipping from './Clipping';
 
 const App = () => {
   const [clippings, setClipping] = useState([{ content: 'demo', id: 234 }]);
@@ -33,7 +34,7 @@ const App = () => {
       <section className="content">
         <div className="clipping-list">
           {clippings.map((clip, clipIdx) => (
-            <li key={`clipping-${clipIdx}`}>{clip.content}</li>))}
+            <Clipping key={`clipping-${clipIdx}`} content={clip.content} onClick-{() => {console.log('Clicked Clipping!!');}}/>))}
         </div>
       </section>
     </main>
