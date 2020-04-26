@@ -53,3 +53,12 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
+app.on('activate', () => {
+  /*
+		open a window after clicking a dock-icon && there ARE NONE
+	*/
+  if (mainWindow === null) {
+    createWindow();
+  }
+});
