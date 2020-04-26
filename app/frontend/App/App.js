@@ -26,9 +26,9 @@ const App = () => {
     setClipping(newClippings);
   };
 
-  // useEffect(() => {
-  // 	ipcRenderer.on('create-new-clipping', addClipping);
-  // }, []);
+  useEffect(() => {
+  	ipcRenderer.on('create-new-clipping', addClipping);
+  }, []);
 
   const writeToClipboard = (c) => {
   	clipboard.writeText(c);
