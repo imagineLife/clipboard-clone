@@ -1,4 +1,5 @@
 import React from 'react';
+import './Clipping.js';
 
 const Clipping = ({ content, onClick }) => (
   <article className="clippings-list-item">
