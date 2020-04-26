@@ -13,8 +13,13 @@ import Clipping from '../Clipping';
 const App = () => {
   const [clippings, setClipping] = useState([{ content: 'demo', id: 234 }]);
   const [clippingEffect, setClippingEffect] = useState(false);
+  const [addToBoardFromApp, setAddToBoardFromApp] = useState(false);
 
-  // side-effect to update clipping
+  const writeToClipboard = (c) => {
+    clipboard.writeText(c.content);
+  };
+
+  // side-effect to update app from clipboard
   useEffect(() => {
     if (clippingEffect) {
       const content = clipboard.readText();
@@ -29,17 +34,28 @@ const App = () => {
       setClippingEffect(false);
     }
   }, [clippingEffect]);
-  // get new clipping FROM clipboard
 
+  useEffect(() => {
+    if (addToBoardFromApp) {
+      const firstClipping = clippings[0];
+      console.log('firstClipping');
+      console.log(firstClipping);
+
+      if (firstClipping) writeToClipboard(firstClipping);
+      setAddToBoardFromApp(false);
+    }
+  }, [addToBoardFromApp]);
+
+  // register event listeners
   useEffect(() => {
   	ipcRenderer.on('create-new-clipping', () => {
       setClippingEffect(true);
     });
-  }, []);
 
-  const writeToClipboard = (c) => {
-  	clipboard.writeText(c);
-  };
+    ipcRenderer.on('copy-to-board', () => {
+      setAddToBoardFromApp(true);
+    });
+  }, []);
 
   return (
     <main className="container">
@@ -60,7 +76,7 @@ const App = () => {
             <Clipping
               key={`clipping-${clipIdx}`}
               content={clip.content}
-              onClick={writeToClipboard}
+              onClick={() => setAddToBoardFromApp(true)}
             />
           ))}
         </div>
