@@ -27,3 +27,26 @@ MODULES
 	})
 ```
 - comment-out the app.onReady
+
+### test it
+- run the project
+- see the cat icon in the menu-bar
+
+
+## A Secondary Menu
+update menubar.on('ready')
+- ```
+	const secondM = Menu.buildFromTemplate([
+		{
+			label: 'Quit',
+			click(){
+				mb.app.quit()
+			},
+			accelerator: 'CommandOrControl+Q'
+		}
+	])
+
+	mb.tray.on('right-clik', () => {
+		mb.tray.popupContextMenu(secondM)
+	})
+```
