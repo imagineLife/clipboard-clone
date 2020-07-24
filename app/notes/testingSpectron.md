@@ -32,4 +32,14 @@ SETUP
 SETUP TESTING BLOCK
 - describe('tests', () => {
 	- this.timeout(10000) //
+
+
+	// before && after
+	beforeEach(() => {
+		return app.start()
+	})
+
+	afterEach(() => {
+		return app.stop()
+	})
 - })
