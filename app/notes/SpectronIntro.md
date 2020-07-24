@@ -1,5 +1,5 @@
 
-## Testing With Spectron
+## Intro to Spectron
 (https://www.electronjs.org/spectron)
 
 Spectron is built on...
