@@ -52,4 +52,9 @@ SETUP TESTING BLOCK
 		const count = await app.client.getWindowCount()
 		return assert(count, 1);
 	})
+
+	it('has the correct title', async () => {
+		const t = await app.client.waitUntilWindowLoaded.getTitle()
+		return assert.equal(t,'the-title-goes-here')
+	})
 - })
