@@ -31,7 +31,7 @@ SETUP
 
 SETUP TESTING BLOCK
 - describe('tests', () => {
-	- this.timeout(10000) //
+	- this.timeout(10000) //buy time for re-building
 
 
 	// before && after
@@ -41,5 +41,15 @@ SETUP TESTING BLOCK
 
 	afterEach(() => {
 		return app.stop()
+	})
+
+	//removable smoke-test
+	it('should just work!!', () => {
+		assert.ok(true);
+	})
+
+	it('shows initial window' async () => {
+		const count = await app.client.getWindowCount()
+		return assert(count, 1);
 	})
 - })
