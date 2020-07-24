@@ -1,2 +1,3 @@
 1. menubar
-2. testingSpectron
+2. SpectronIntro
+3. SpectronTests
