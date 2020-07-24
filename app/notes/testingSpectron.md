@@ -29,7 +29,8 @@ SETUP
 		- args: [path.join[__dirname,'..]]
 	- })
 
-SETUP TESTING BLOCK
+SETUP TESTING BLOCK && 'Smoke' tests
+
 - describe('tests', () => {
 	- this.timeout(10000) //buy time for re-building
 
@@ -56,5 +57,10 @@ SETUP TESTING BLOCK
 	it('has the correct title', async () => {
 		const t = await app.client.waitUntilWindowLoaded.getTitle()
 		return assert.equal(t,'the-title-goes-here')
+	})
+
+	it('doesn't have the dev tools open', async () => {
+	const t = devToolsOpen app.client.waitUntilWindowLoaded.browserWindow.isDevToolsOpened()
+		return assert.equal(devToolsOpen,false)
 	})
 - })
