@@ -17,3 +17,14 @@ const clpItms = await app.client.$$('.clippings-list-item')
 return assert.equal(clpItms.length, 0)
 })
  ```
+ 
+ ### Responds to user-input, stores clipping on-click
+ ```
+ it('should have 0 clippings on-load', async () => {
+  //let ui load
+  await app.client.waitUntilWindowaLoaded();
+  await app.client.click('#copy-from-clipboard')
+const clpItms = await app.client.$$('.clippings-list-item')
+return assert.equal(clpItms.length, 1)
+})
+ ```
