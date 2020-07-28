@@ -1,7 +1,7 @@
 // main.js
 'use strict'
 // Import parts of electron to use
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, globalShortcut } = require('electron')
 const path = require('path')
 const url = require('url')
 
@@ -13,7 +13,7 @@ const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-d
   without it, the window will be closed automatically when 
   the JavaScript object is garbage collected
 */
-let mainWindow
+let mainWindow;
 
 // Keep a reference for dev mode
 let dev = false
@@ -41,7 +41,8 @@ function createWindow() {
     }
   })
   // and load the index.html of the app.
-  let indexPath
+  let indexPath;
+
   // Determine the correct index.html file
   // (created by webpack) to load in dev and production
   if (dev && process.argv.indexOf('--noDevServer') === -1) {
@@ -80,6 +81,28 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+    // register Cmd + Shift + ! to save new txt to clipboard
+  const createClippingShortcut = globalShortcut.register('CommandOrControl+!', () => {
+    // emit a socket-style event
+    mainWindow.webContents.send('create-new-clipping');
+  });
+
+  // register Cmd + Shift + ! to save new txt to clipboard
+  const copyClipToBoard = globalShortcut.register('CommandOrControl+@', () => {
+    // emit a socket-style event
+    mainWindow.webContents.send('copy-to-board');
+  });
+
+  // event-registration error handling
+  if (!createClippingShortcut) {
+    console.error('Event Registration Failed:', 'create-new-clipping');
+  }
+
+  // event-registration error handling
+  if (!copyClipToBoard) {
+    console.error('Event Registration Failed:', 'copy-to-board');
+  }
 }
 /*
   This method will be called when Electron has finished
