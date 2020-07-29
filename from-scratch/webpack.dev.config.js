@@ -5,6 +5,9 @@ const { spawn } = require('child_process')
 // Any directories you will be adding code/files into, need to be added to this array so webpack will pick them up
 const defaultInclude = path.resolve(__dirname, 'src')
 module.exports = {
+  entry: {
+   main: './renderer.js' 
+  },
   module: {
     rules: [
       {
@@ -13,10 +16,12 @@ module.exports = {
         include: defaultInclude
       },
       {
-        test: /\.jsx?$/,
-        use: [{ loader: 'babel-loader' }],
-        include: defaultInclude
-      },
+          test: /\.js$/,
+          exclude: /(node_modules)/,
+          use: {
+            loader: 'babel-loader'
+          }
+        },
       {
         test: /\.(jpe?g|png|gif)$/,
         use: [{ loader: 'file-loader?name=img/[name]__[hash:base64:5].[ext]' }],
