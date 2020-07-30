@@ -2,4 +2,4 @@ import React, { useState } from 'react';
 import { render } from 'react-dom';
 import App from './src/App'
 
-render(<App />, document.getElementById('application'));
+render(<App />, document.getElementById("app"));
