@@ -23,16 +23,16 @@ const App = () => {
     clipboard.writeText(c.content);
   };
 
-  // const fetchDBClippings = () => {
-  //   clippingsDB('clippings')
-  //     .select()
-  //     .then(setClippings);
-  // };
+  const fetchDBClippings = () => {
+    clippingsDB('clippings')
+      .select()
+      .then(setClippings);
+  };
 
   // fetch db data!
-  // useEffect(() => {
-  //   fetchDBClippings();
-  // }, []);
+  useEffect(() => {
+    fetchDBClippings();
+  }, []);
 
   // side-effect to update app from clipboard
   useEffect(() => {
