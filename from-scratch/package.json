@@ -32,7 +32,9 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "knex": "^0.21.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "sqlite3": "^5.0.0"
   }
 }
