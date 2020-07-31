@@ -31,11 +31,7 @@ const dbConfig = ({
 let database = knex(dbConfig)
 
 // check if table exists
-database.schema.hasTable('clippings').then((t) => {
-  console.log('t');
-  console.log(t);
-  console.log('// - - - - - //')
-  
+database.schema.hasTable('clippings').then((t) => {  
   if (!t) {
     return database.schema.createTable('clippings', (tbl) => {
       tbl.increments('id').primary();
