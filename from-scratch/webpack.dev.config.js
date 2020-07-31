@@ -56,5 +56,8 @@ module.exports = {
       .on('close', code => process.exit(0))
       .on('error', spawnError => console.error(spawnError))
     }
+  },
+  externals: {
+    sqlite3: 'commonjs2 sqlite3'
   }
 }
