@@ -21,6 +21,7 @@ const App = () => {
 
   // clippings fether
   const fetchDBClippings = () => {
+    console.log('FETCHING CLIPPINGS?!');
     clippingsDB('clippings')
       .select()
       .then(setClippings);
@@ -34,20 +35,45 @@ const App = () => {
   // side-effect to update app clipping-list from system clipboard
   useEffect(() => {
     if (clippingEffect) {
+
       const content = clipboard.readText();
-      const id = Date.now();
-      const clipping = { id, content };
 
-      // prep new state
-      const newClippings = [clipping, ...clippings];
+      /*
+          DB-persistent clippings
+      */
+      // content?!
+        clippingsDB('clippings')
+          .insert({content})
+          .then((x) => {
+            console.log('x')
+            console.log(x)
+            fetchDBClippings()
+          })
 
-      // update state
-      setClippings(newClippings);
+
+
+      /*
+        React-State-saved clippings
+        Comment-out above code to enable local clipping state
+          && disable the db-storage mechanism
+      */
+
+      // const id = Date.now();
+      // const clipping = { id, content };
+
+      // // prep new state
+      // const newClippings = [clipping, ...clippings];
+
+      // // update state
+      // setClippings(newClippings);
+
+
       setClippingEffect(false);
     }
   }, [clippingEffect]);
 
-  // 
+  // copies a clipping FROM a clipping in the clipping-list (in the app)
+  //  to the clipboard 
   useEffect(() => {
     if (addToBoardFromApp) {
       clipboard.writeText(addToBoardFromApp);
