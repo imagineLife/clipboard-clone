@@ -10,7 +10,7 @@ const Clipping = ({ content, onClick }) => (
       <button onClick={() => onClick(content)}>
         &rarr; Clipboard
       </button>
-      <button>Update</button>
+      <button className="remove-clipping">Remove</button>
     </div>
   </article>
 );
