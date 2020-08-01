@@ -9,7 +9,7 @@ import {
 } from 'electron';
 
 import Clipping from '../Clipping';
-
+import './App.css'
 
 // DB!!
 import clippingsDB from '../../database';
@@ -19,10 +19,7 @@ const App = () => {
   const [clippingEffect, setClippingEffect] = useState(false);
   const [addToBoardFromApp, setAddToBoardFromApp] = useState(false);
 
-  const writeToClipboard = (c) => {
-    clipboard.writeText(c.content);
-  };
-
+  // clippings fether
   const fetchDBClippings = () => {
     clippingsDB('clippings')
       .select()
@@ -34,7 +31,7 @@ const App = () => {
     fetchDBClippings();
   }, []);
 
-  // side-effect to update app from clipboard
+  // side-effect to update app clipping-list from system clipboard
   useEffect(() => {
     if (clippingEffect) {
       const content = clipboard.readText();
@@ -50,13 +47,10 @@ const App = () => {
     }
   }, [clippingEffect]);
 
+  // 
   useEffect(() => {
     if (addToBoardFromApp) {
-      const firstClipping = clippings[0];
-      console.log('firstClipping');
-      console.log(firstClipping);
-
-      if (firstClipping) writeToClipboard(firstClipping);
+      clipboard.writeText(addToBoardFromApp);
       setAddToBoardFromApp(false);
     }
   }, [addToBoardFromApp]);
@@ -91,7 +85,9 @@ const App = () => {
             <Clipping
               key={`clipping-${clipIdx}`}
               content={clip.content}
-              onClick={() => setAddToBoardFromApp(true)}
+              onClick={() => {
+                setAddToBoardFromApp(clip.content)
+              }}
             />
           ))}
         </div>
