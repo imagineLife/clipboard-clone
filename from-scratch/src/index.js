@@ -5,6 +5,7 @@ const App = () => {
 	return(<p>react component</p>)
 }
 
-console.log('INDEX?@');
+let newDiv = document.createElement('div')
+const app = document.body.appendChild(newDiv)
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, app);
