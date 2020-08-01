@@ -2,7 +2,7 @@
   "name": "from-scratch",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "./main.js",
   "scripts": {
     "wp": "webpack",
     "rebuild": "electron-rebuild -f -w sqlite3",
