@@ -21,10 +21,11 @@ const App = () => {
 
   // clippings fether
   const fetchDBClippings = () => {
-    console.log('FETCHING CLIPPINGS?!');
     clippingsDB('clippings')
       .select()
-      .then(setClippings);
+      .then((clips) => {
+        setClippings(clips)
+      });
   };
 
   // fetch db data!
@@ -109,10 +110,23 @@ const App = () => {
         <div className="clipping-list">
           {clippings.map((clip, clipIdx) => (
             <Clipping
+              clipId={clip.id}
               key={`clipping-${clipIdx}`}
               content={clip.content}
               onClick={() => {
                 setAddToBoardFromApp(clip.content)
+              }}
+              onRemove={(id) => {
+                clippingsDB('clippings')
+                  .where('id',id)
+                  .delete()
+                  .then(itm => {
+                    fetchDBClippings()
+                  })
+                  .catch(e => {
+                    console.log('DELETE ERROR')
+                    console.log(e)
+                  })
               }}
             />
           ))}
