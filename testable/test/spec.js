@@ -12,6 +12,8 @@ const app = new Application({
 });
 
 describe('Clipmaster 9000', function() {
+  const expectedTitle = 'Demo Testable';
+
   this.timeout(5000);
 
   beforeEach(() => {
@@ -34,8 +36,9 @@ describe('Clipmaster 9000', function() {
     return assert.equal(windowCount, 1);
   });
 
-  it.skip('has the correct title', async () => {
-    // We'll do this one together.
+  it('has the correct title', async () => {
+    const windowTitle = await app.client.waitUntilWindowLoaded().getTitle()
+    return assert.equal(windowTitle, expectedTitle);
   });
 
   it.skip('does not have the developer tools open', async () => {
