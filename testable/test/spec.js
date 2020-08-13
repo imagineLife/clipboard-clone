@@ -12,7 +12,7 @@ const app = new Application({
 });
 
 describe('Clipmaster 9000', function() {
-  this.timeout(10000);
+  this.timeout(5000);
 
   beforeEach(() => {
     return app.start();
@@ -29,8 +29,9 @@ describe('Clipmaster 9000', function() {
     assert.ok(true);
   });
 
-  it.skip('shows an initial window', async () => {
-    // We'll do this one together.
+  it('shows a single initial window', async () => {
+    const windowCount = await app.client.getWindowCount();
+    return assert.equal(windowCount, 1);
   });
 
   it.skip('has the correct title', async () => {
