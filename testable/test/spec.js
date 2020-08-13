@@ -41,8 +41,11 @@ describe('Clipmaster 9000', function() {
     return assert.equal(windowTitle, expectedTitle);
   });
 
-  it.skip('does not have the developer tools open', async () => {
-    // We'll do this one together.
+  it('does not have the developer tools open', async () => {
+    const open = await app.client.waitUntilWindowLoaded()
+      .browserWindow
+      .isDevToolsOpened()
+      return assert.equal(open, false)
   });
 
   it.skip('has a button with the text "Copy from Clipboard"', async () => {
