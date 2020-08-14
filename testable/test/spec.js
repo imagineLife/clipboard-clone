@@ -49,7 +49,18 @@ describe('App Functionality', function() {
   });
 
   it.skip('should successfully remove a clipping', async () => {
-    // We'll do this one together.
+    // load
+    await app.client.waitUntilWindowLoaded();
+
+    // click the btn
+    await app.client.click('#copy-from-clipboard')
+    .moveToObject('.clippings-list-item')
+    .click('.remove-clipping');
+
+    // count clips
+    const clips = await app.client.$$('.clippings-list-item')
+
+    return assert.equal(clips.length, 0)
   });
 
   it.skip('should have the correct text in a new clipping', async () => {
