@@ -35,14 +35,17 @@ describe('App Functionality', function() {
     return assert.equal(clips.length,0);
   });
 
-  it.skip('should have one clipping when the "Copy From Clipboard" button has been pressed', async () => {
-    /*
-     * Independent Exercise!
-     *
-     * - Click on the #copy-from-clipboard button.
-     * - Verify that there is now one .clippings-list-item element
-     *   on the page.
-     */
+  it('should have one clipping when the "Copy From Clipboard" button has been pressed', async () => {
+    // load
+    await app.client.waitUntilWindowLoaded();
+
+    // click the btn
+    await app.client.click('#copy-from-clipboard');
+
+    // count clips
+    const clips = await app.client.$$('.clippings-list-item')
+
+    return assert.equal(clips.length, 1)
   });
 
   it.skip('should successfully remove a clipping', async () => {
