@@ -13,7 +13,7 @@ const app = new Application({
 
 describe('App Functionality', function() {
 
-  this.timeout(5000);
+  this.timeout(7000);
 
   beforeEach(() => {
     return app.start();
@@ -48,7 +48,7 @@ describe('App Functionality', function() {
     return assert.equal(clips.length, 1)
   });
 
-  it.skip('should successfully remove a clipping', async () => {
+  it('should successfully remove a clipping', async () => {
     // load
     await app.client.waitUntilWindowLoaded();
 
@@ -63,19 +63,22 @@ describe('App Functionality', function() {
     return assert.equal(clips.length, 0)
   });
 
-  it.skip('should have the correct text in a new clipping', async () => {
-    /*
-     * Independent Exercise!
-     *
-     * - Write a test that adds some text to the system clipboard.
-     * - Click on the "Copy to Clipboard" button.
-     * - Get the text from the .clipping-text element.
-     * - Assert that the text in the field is the same as what you
-     *   wrote to the clipboard.
-     *
-     * Hint—You can write text to the clipboard using:
-     *   app.electron.clipboard.writeText('Vegan Ham');
-     */
+  it('should have the correct text in a new clipping', async () => {
+   const dt = "default text here";
+
+   //load app
+   await app.client.waitUntilWindowLoaded();
+
+   //set text in clipboard
+   await app.electron.clipboard.writeText(dt)
+
+   //copy
+   await app.client.click('#copy-from-clipboard')
+
+   //assure text that was is IS on-screen
+   const clipTxt = await app.client.getText('.clipping-text')
+   return assert.equal(clipTxt,dt);
+
   });
 
   it.skip('it should write the text of the clipping to the clipboard', async () => {
