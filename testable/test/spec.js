@@ -81,21 +81,27 @@ describe('App Functionality', function() {
 
   });
 
-  it.skip('it should write the text of the clipping to the clipboard', async () => {
-    /*
-     * Independent Exercise!
-     *
-     * In this test, we want to make sure that Clipmaster replaces whatever is
-     * already on a the clipboard. We'll implement the following steps.
-     *
-     * - Write a string of text to the clipboard.
-     * - Click "Copy from Clipboard"
-     * - Write something else to the clipboard.
-     * - Click the .copy-clippling element that was created when you added
-     *   the first string to Clipmaster
-     * - Assert that the clipboard currently contains that first string using
-     *   `app.electron.clipboard.readText()`.
-     *
-     */
+  it('it should write the text of the clipping TO the clipboard', async () => {
+  const dt = "default text here";
+  const dtTwo = "another string here";
+
+   //load app
+   await app.client.waitUntilWindowLoaded();
+
+   //set text in clipboard
+   await app.electron.clipboard.writeText(dt)
+
+   //copy
+   await app.client.click('#copy-from-clipboard')
+
+   //write MORE text to clipboard
+   await app.electron.clipboard.writeText(dtTwo)
+
+   // click btn again
+   await app.client.click('.copy-clipping')
+
+   //assure text that was is IS on-screen
+   const clipTxt = await app.client.getText('.clipping-text')
+   return assert.equal(clipTxt,dt);
   });
 });
