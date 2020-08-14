@@ -11,8 +11,7 @@ const app = new Application({
   args: [path.join(__dirname, '..')],
 });
 
-describe('Clipmaster 9000', function() {
-  const expectedTitle = 'Demo Testable';
+describe('App Functionality', function() {
 
   this.timeout(5000);
 
@@ -26,30 +25,8 @@ describe('Clipmaster 9000', function() {
     }
   });
 
-  it('smoke', () => {
-    // Delete this test as soon as you write one of your own.
-    assert.ok(true);
-  });
-
-  it('shows a single initial window', async () => {
-    const windowCount = await app.client.getWindowCount();
-    return assert.equal(windowCount, 1);
-  });
-
-  it('has the correct title', async () => {
-    const windowTitle = await app.client.waitUntilWindowLoaded().getTitle()
-    return assert.equal(windowTitle, expectedTitle);
-  });
-
-  it('does not have the developer tools open', async () => {
-    const open = await app.client.waitUntilWindowLoaded()
-      .browserWindow
-      .isDevToolsOpened()
-      return assert.equal(open, false)
-  });
-
-  it.skip('has a button with the text "Copy from Clipboard"', async () => {
-    // We'll do this one together.
+  it('has a button with the text "Copy from Clipboard"', async () => {
+    
   });
 
   it.skip('should not have any clippings when the application starts up', async () => {
