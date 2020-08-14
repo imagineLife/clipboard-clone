@@ -30,8 +30,9 @@ describe('App Functionality', function() {
     return assert.equal(btnTxt,"Copy from Clipboard");
   });
 
-  it.skip('should not have any clippings when the application starts up', async () => {
-    // We'll do this one together.
+  it('should not have any clippings when the application starts up', async () => {
+    const clips = await app.client.$$('.clippings-list-item')
+    return assert.equal(clips.length,0);
   });
 
   it.skip('should have one clipping when the "Copy From Clipboard" button has been pressed', async () => {
