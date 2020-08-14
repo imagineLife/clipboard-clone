@@ -26,7 +26,8 @@ describe('App Functionality', function() {
   });
 
   it('has a button with the text "Copy from Clipboard"', async () => {
-    
+    const btnTxt = await app.client.getText('#copy-from-clipboard')
+    return assert.equal(btnTxt,"Copy from Clipboard");
   });
 
   it.skip('should not have any clippings when the application starts up', async () => {
