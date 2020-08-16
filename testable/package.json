@@ -5,7 +5,11 @@
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
-    "test": "mocha"
+    "test": "mocha",
+    "build":"npm run build-mac",
+    "build-mac": "electron-packager .",
+    "build-pc": "electron-packager .",
+    "build-linux": "electron-packager .",
   },
   "license": "MIT",
   "keywords": [
