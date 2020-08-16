@@ -18,6 +18,10 @@ const httpServer = http.createServer(app);
 // body-parser middleware
 app.use(bp.urlencoded({extended:false}));
 
+const multerMW = multer({dest: crashesPath}).single('upload_file_minidump');
+
+
+
 httpServer.listen(SERVER_PORT, () => {
 	console.log('crash-server running');
 });
