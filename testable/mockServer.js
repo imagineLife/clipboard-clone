@@ -3,13 +3,12 @@ const express = require('express');
 const multer = require('multer');
 const bp = require('body-parser');
 const uuid = require('uuid');
-const wf = require('write-file');
 const path = require('path')
 const http = require('http');
 
 // handlers
-const crashReportHandler = require('./handlers/crashReport');
-const exceptionsHandler = require('./exceptions')
+const { crashReportHandler } = require('./handlers/crashReport');
+const { exceptionsHandler } = require('./handlers/exceptions')
 // Vars
 const SERVER_PORT = 8082;
 const crashesPath = path.join(__dirname, 'crashes');
