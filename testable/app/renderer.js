@@ -3,6 +3,10 @@ const { clipboard, ipcRenderer } = require('electron');
 const clippingsList = document.getElementById('clippings-list');
 const copyFromClipboardButton = document.getElementById('copy-from-clipboard');
 
+// trigger the error-handler
+require('./../crash-handler')
+
+
 ipcRenderer.on('create-new-clipping', () => {
   addClippingToList();
   new Notification('Clipping Added', {
