@@ -2,6 +2,9 @@ const { app, BrowserWindow, globalShortcut } = require('electron');
 
 let mainWindow;
 
+// the self-running crash-reporter
+require('./../crash-handler');
+
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
     height: 500,
