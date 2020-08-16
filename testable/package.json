@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A menubar application with a rich UI.",
   "main": "app/main.js",
+  "productName": "Tomato-Paste",
   "scripts": {
     "start": "electron .",
     "test": "mocha",
