@@ -8,7 +8,7 @@
     "start": "electron .",
     "test": "mocha",
     "build": "npm run build-mac",
-    "build-mac": "electron-packager . --out=\"build\" --overwrite",
+    "build-mac": "electron-packager . --out=\"build\" --overwrite --icon=\"./SayWhat.icns\"",
     "build-pc": "electron-packager .",
     "build-linux": "electron-packager ."
   },
