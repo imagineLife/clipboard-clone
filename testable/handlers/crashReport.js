@@ -10,7 +10,7 @@ const crashReportHandler = (req, res) => {
   const filePath = `${req.file.path}.json`;
   const report = JSON.stringify(body);
 
-  writeFile(filePath, report, error => {
+  wf(filePath, report, error => {
     if (error) return console.error('Error Saving', report);
     console.log('Crash Saved', filePath, report);
   });
