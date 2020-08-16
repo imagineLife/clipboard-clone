@@ -12,7 +12,6 @@ const { exceptionsHandler } = require('./handlers/exceptions')
 // Vars
 const SERVER_PORT = 8082;
 const crashesPath = path.join(__dirname, 'crashes');
-const exceptionsPath = path.join(__dirname, 'uncaughtexceptions');
 
 const app = express();
 const httpServer = http.createServer(app);
