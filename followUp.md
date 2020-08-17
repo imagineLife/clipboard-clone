@@ -11,3 +11,6 @@
 - updates.electronjs.org
 - use an npm mod ```update-electron-app```
 
+...[slack] uses the mac app store
+
+look into [squirrel](https://github.com/Squirrel) and [sparkle](https://sparkle-project.org). 
