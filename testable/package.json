@@ -21,7 +21,7 @@
     "body-parser": "^1.19.0",
     "electron": "3.0.10",
     "electron-packager": "^15.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "menubar": "5.2.3",
     "multer": "^1.4.2",
     "request": "2.88.0",
